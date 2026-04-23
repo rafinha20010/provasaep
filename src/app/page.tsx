@@ -1,66 +1,96 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client';
 
-export default function Home() {
+import { useState } from 'react';
+import styles from './page.module.css';
+
+export default function CadastroPage() {
+  const [nome, setNome] = useState('');
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+  const [erro, setErro] = useState('');
+  const [sucesso, setSucesso] = useState('');
+
+  async function handleCadastro() {
+    setErro('');
+    setSucesso('');
+
+    if (!nome || !email || !senha) {
+      setErro('Preencha todos os campos.');
+      return;
+    }
+
+    try {
+      const res = await fetch('/api/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nome, email, senha }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setErro(data.error || 'Erro ao cadastrar.');
+        return;
+      }
+
+      setSucesso('Cadastro realizado com sucesso!');
+      setNome('');
+      setEmail('');
+      setSenha('');
+    } catch {
+      setErro('Erro de conexão com o servidor.');
+    }
+  }
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className={styles.container}>
+      <div className={styles.card}>
+        <p className={styles.titulo}>Sistema de Gestão de Estoque</p>
+
+        <div className={styles.campo}>
+          <label className={styles.label}>Nome</label>
+          <input
+            className={styles.input}
+            type="text"
+            placeholder="Digite seu nome"
+            value={nome}
+            onChange={(e) => setNome(e.target.value)}
+          />
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div className={styles.campo}>
+          <label className={styles.label}>E-mail</label>
+          <input
+            className={styles.input}
+            type="email"
+            placeholder="Digite seu e-mail"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </div>
-      </main>
+
+        <div className={styles.campo}>
+          <label className={styles.label}>Senha</label>
+          <input
+            className={styles.input}
+            type="password"
+            placeholder="Digite sua senha"
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
+          />
+        </div>
+
+        {erro && <p className={styles.erro}>{erro}</p>}
+        {sucesso && <p className={styles.sucesso}>{sucesso}</p>}
+
+        <button className={styles.botao} onClick={handleCadastro}>
+          Cadastrar
+        </button>
+
+        <p className={styles.rodape}>
+          Já tem conta? <a href="/login" className={styles.link}>Entrar</a>
+        </p>
+      </div>
     </div>
   );
 }
