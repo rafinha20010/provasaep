@@ -1,0 +1,388 @@
+.page {
+    min-height: 100vh;
+    background: #f0f0f0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  /* Header */
+  .header {
+    background: #1a1a1a;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    height: 52px;
+  }
+  
+  .logo {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+  
+  .headerRight {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .userLabel {
+    font-size: 13px;
+    color: #ccc;
+  }
+  
+  .userLabel strong {
+    color: #fff;
+  }
+  
+  .sairBtn {
+    background: #c0392b;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 14px;
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .sairBtn:hover {
+    background: #a93226;
+  }
+  
+  /* Main */
+  .main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+  
+  .topo {
+    margin-bottom: 1.5rem;
+  }
+  
+  .titulo {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+  }
+  
+  .subtitulo {
+    font-size: 13px;
+    color: #666;
+  }
+  
+  /* Alerta */
+  .alerta {
+    background: #fffbe6;
+    border: 1px solid #f0c040;
+    border-radius: 4px;
+    padding: 10px 14px;
+    margin-bottom: 1.25rem;
+    font-size: 13px;
+    color: #7a5c00;
+  }
+  
+  .alertaTitulo {
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  
+  .alertaItem {
+    margin: 2px 0;
+  }
+  
+  /* Barra de ações */
+  .barra {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+    gap: 1rem;
+  }
+  
+  .barraInfo {
+    font-size: 13px;
+    color: #555;
+    font-weight: 600;
+  }
+  
+  .barraBotoes {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .btnNovo {
+    background: #c0392b;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  
+  .btnNovo:hover {
+    background: #a93226;
+  }
+  
+  .btnVoltar {
+    background: #555;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  .btnVoltar:hover {
+    background: #333;
+  }
+  
+  /* Tabelas */
+  .tableWrapper {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin-bottom: 2rem;
+  }
+  
+  .secaoTitulo {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+  }
+  
+  .secaoSubtitulo {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 0.75rem;
+  }
+  
+  .tabela {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  
+  .tabela thead tr {
+    background: #1a1a1a;
+    color: #fff;
+  }
+  
+  .tabela th {
+    padding: 11px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 13px;
+  }
+  
+  .tabela td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #eee;
+    color: #1a1a1a;
+    vertical-align: middle;
+  }
+  
+  .tabela tbody tr:last-child td {
+    border-bottom: none;
+  }
+  
+  .tabela tbody tr:hover {
+    background: #fafafa;
+  }
+  
+  /* Badges de tipo */
+  .badgeEntrada {
+    display: inline-block;
+    background: #27ae60;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 3px;
+  }
+  
+  .badgeSaida {
+    display: inline-block;
+    background: #c0392b;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 3px;
+  }
+  
+  /* Badges de status */
+  .badgeNormal {
+    display: inline-block;
+    background: #27ae60;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 3px;
+  }
+  
+  .badgeBaixo {
+    display: inline-block;
+    background: #e67e22;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 3px;
+  }
+  
+  .vazio {
+    text-align: center;
+    color: #999;
+    padding: 2rem !important;
+  }
+  
+  .loading {
+    padding: 2rem;
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+  }
+  
+  /* Modal */
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .modal {
+    background: #fff;
+    border-radius: 6px;
+    width: 100%;
+    max-width: 460px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  }
+  
+  .modalHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 1.5rem;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .modalHeader h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a1a1a;
+  }
+  
+  .fechar {
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: #999;
+    cursor: pointer;
+    line-height: 1;
+  }
+  
+  .fechar:hover {
+    color: #333;
+  }
+  
+  .modalBody {
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .campo {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .campo label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a1a1a;
+  }
+  
+  .campo input,
+  .campo select {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px 10px;
+    font-size: 13px;
+    color: #1a1a1a;
+    outline: none;
+    background: #fff;
+  }
+  
+  .campo input:focus,
+  .campo select:focus {
+    border-color: #1a1a1a;
+  }
+  
+  .erroModal {
+    font-size: 12px;
+    color: #c0392b;
+    margin: 0;
+  }
+  
+  .modalFooter {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #eee;
+  }
+  
+  .btnCancelar {
+    background: #f0f0f0;
+    color: #333;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  
+  .btnCancelar:hover {
+    background: #e0e0e0;
+  }
+  
+  .btnSalvar {
+    background: #1a1a1a;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  
+  .btnSalvar:hover {
+    background: #333;
+  }
+  
+  .btnSalvar:disabled {
+    background: #999;
+    cursor: not-allowed;
+  }
