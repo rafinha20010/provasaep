@@ -32,7 +32,7 @@ export default function LoginPage() {
 
       // Salva o usuário no localStorage e redireciona
       localStorage.setItem('user', JSON.stringify(data.user));
-      window.location.href = '/dashboard';
+      window.location.href = '/produtos';
     } catch {
       setErro('Erro de conexão com o servidor.');
     }
