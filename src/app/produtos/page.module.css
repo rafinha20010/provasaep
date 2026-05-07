@@ -159,13 +159,24 @@
     text-align: left;
     font-weight: 600;
     font-size: 13px;
+    white-space: nowrap;
+    vertical-align: middle;
   }
+  
+  .tabela th:nth-child(1) { width: 50px; }   
+  .tabela th:nth-child(2) { width: 180px; }  
+  .tabela th:nth-child(3) { width: auto; }   
+  .tabela th:nth-child(4) { width: 100px; }  
+  .tabela th:nth-child(5) { width: 80px; }   
+  .tabela th:nth-child(6) { width: 100px; } 
+  .tabela th:nth-child(7) { width: 120px; }  
   
   .tabela td {
     padding: 10px 14px;
     border-bottom: 1px solid #eee;
     color: #1a1a1a;
     vertical-align: middle;
+    white-space: nowrap;
   }
   
   .tabela tbody tr:last-child td {
