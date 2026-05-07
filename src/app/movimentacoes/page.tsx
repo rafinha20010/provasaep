@@ -13,7 +13,7 @@ interface Produto {
 interface Movimentacao {
   id: number;
   data: string;
-  tipo: 'entrada' | 'saida';
+  tipo: 'Entrada' | 'Saida';
   quantidade: number;
   produto_id: number;
   produto_nome: string;
@@ -251,7 +251,7 @@ export default function MovimentacoesPage() {
                       <td>{formatarData(m.data)}</td>
                       <td>{m.produto_nome}</td>
                       <td>
-                        {m.tipo === 'entrada' ? (
+                        {m.tipo === 'Entrada' ? (
                           <span className={styles.badgeEntrada}>Entrada</span>
                         ) : (
                           <span className={styles.badgeSaida}>Saída</span>
