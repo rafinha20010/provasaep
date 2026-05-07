@@ -1,4 +1,3 @@
-// src/app/api/movimentacao/route.js
 import pool from '@/lib/db';
 import { NextResponse } from 'next/server';
 
@@ -24,7 +23,7 @@ export async function POST(request) {
   const conn = await pool.getConnection();
   try {
     const body = await request.json();
-    const { tipo, quantidade, user_id, produto_id } = body;
+    const { tipo, quantidade, user_id, produto_id, data } = body;
 
     if (!tipo || !quantidade || !user_id || !produto_id) {
       conn.release();
@@ -35,12 +34,11 @@ export async function POST(request) {
     }
 
     const qtd = parseInt(quantidade);
-    // Normaliza para o formato do ENUM do banco
     const tipoNormalizado = tipo.toLowerCase() === 'entrada' ? 'Entrada' : 'Saida';
+    const dataFinal = data ? new Date(data + 'T12:00:00') : new Date();
 
     await conn.beginTransaction();
 
-    // Busca o estoque atual com lock para evitar race conditions
     const [rows] = await conn.query(
       'SELECT estoque FROM produto WHERE id = ? FOR UPDATE',
       [produto_id]
@@ -63,17 +61,15 @@ export async function POST(request) {
       );
     }
 
-    // Atualiza o estoque
     const delta = tipoNormalizado === 'Entrada' ? qtd : -qtd;
     await conn.query(
       'UPDATE produto SET estoque = estoque + ? WHERE id = ?',
       [delta, produto_id]
     );
 
-    // Registra a movimentação
     const [result] = await conn.query(
-      'INSERT INTO movimentacao (data, tipo, quantidade, user_id, produto_id) VALUES (NOW(), ?, ?, ?, ?)',
-      [tipoNormalizado, qtd, user_id, produto_id]
+      'INSERT INTO movimentacao (data, tipo, quantidade, user_id, produto_id) VALUES (?, ?, ?, ?, ?)',
+      [dataFinal, tipoNormalizado, qtd, user_id, produto_id]
     );
 
     await conn.commit();

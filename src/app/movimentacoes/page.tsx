@@ -20,7 +20,6 @@ interface Movimentacao {
   user_nome: string;
 }
 
-// Bubble Sort por nome
 function bubbleSortPorNome(arr: Produto[]): Produto[] {
   const sorted = [...arr];
   for (let i = 0; i < sorted.length - 1; i++) {
@@ -50,6 +49,7 @@ export default function MovimentacoesPage() {
     produto_id: '',
     tipo: 'entrada',
     quantidade: '',
+    data: new Date().toISOString().split('T')[0],
   });
 
   const [user, setUser] = useState<{ id: number; nome?: string }>({ id: 1 });
@@ -86,7 +86,12 @@ export default function MovimentacoesPage() {
   const produtosBaixoEstoque = produtos.filter(p => p.estoque <= p.estoque_min);
 
   function abrirModal() {
-    setForm({ produto_id: '', tipo: 'entrada', quantidade: '' });
+    setForm({
+      produto_id: '',
+      tipo: 'entrada',
+      quantidade: '',
+      data: new Date().toISOString().split('T')[0],
+    });
     setErro('');
     setModalAberto(true);
   }
@@ -113,6 +118,7 @@ export default function MovimentacoesPage() {
           quantidade: qtd,
           produto_id: parseInt(form.produto_id),
           user_id: user.id,
+          data: form.data,
         }),
       });
 
@@ -133,7 +139,6 @@ export default function MovimentacoesPage() {
 
   return (
     <div className={styles.page}>
-      {/* Header */}
       <header className={styles.header}>
         <span className={styles.logo}>▪ Gestão de Estoque</span>
         <div className={styles.headerRight}>
@@ -145,13 +150,11 @@ export default function MovimentacoesPage() {
       </header>
 
       <main className={styles.main}>
-        {/* Título */}
         <div className={styles.topo}>
           <h1 className={styles.titulo}>Gestão de Movimentações</h1>
           <p className={styles.subtitulo}>Registre movimentações de entrada e saída</p>
         </div>
 
-        {/* Alerta de estoque baixo */}
         {produtosBaixoEstoque.length > 0 && (
           <div className={styles.alerta}>
             <p className={styles.alertaTitulo}>⚠ Alertas de Estoque:</p>
@@ -163,7 +166,6 @@ export default function MovimentacoesPage() {
           </div>
         )}
 
-        {/* Barra de ações — tabela de produtos */}
         <div className={styles.barra}>
           <span className={styles.barraInfo}>
             Produtos ordenados alfabeticamente (Bubble Sort)
@@ -176,7 +178,6 @@ export default function MovimentacoesPage() {
           </div>
         </div>
 
-        {/* Tabela de Produtos */}
         <div className={styles.tableWrapper}>
           {loading ? (
             <div className={styles.loading}>Carregando...</div>
@@ -221,7 +222,6 @@ export default function MovimentacoesPage() {
           )}
         </div>
 
-        {/* Histórico de Movimentações */}
         <div>
           <p className={styles.secaoTitulo}>Histórico de Movimentações</p>
           <p className={styles.secaoSubtitulo}>Últimas movimentações registradas</p>
@@ -267,7 +267,6 @@ export default function MovimentacoesPage() {
         </div>
       </main>
 
-      {/* Modal Nova Movimentação */}
       {modalAberto && (
         <div className={styles.overlay} onClick={() => setModalAberto(false)}>
           <div className={styles.modal} onClick={e => e.stopPropagation()}>
@@ -311,6 +310,15 @@ export default function MovimentacoesPage() {
                   value={form.quantidade}
                   onChange={e => setForm({ ...form, quantidade: e.target.value })}
                   placeholder="0"
+                />
+              </div>
+
+              <div className={styles.campo}>
+                <label>Data *</label>
+                <input
+                  type="date"
+                  value={form.data}
+                  onChange={e => setForm({ ...form, data: e.target.value })}
                 />
               </div>
 
