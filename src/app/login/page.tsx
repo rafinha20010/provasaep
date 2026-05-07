@@ -30,7 +30,6 @@ export default function LoginPage() {
         return;
       }
 
-      // Salva o usuário no localStorage e redireciona
       localStorage.setItem('user', JSON.stringify(data.user));
       window.location.href = '/produtos';
     } catch {
@@ -70,10 +69,6 @@ export default function LoginPage() {
         <button className={styles.botao} onClick={handleLogin}>
           Entrar
         </button>
-
-        <p className={styles.rodape}>
-          Não tem conta? <a href="/" className={styles.link}>Cadastrar</a>
-        </p>
       </div>
     </div>
   );
